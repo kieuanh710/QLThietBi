@@ -22,6 +22,12 @@ class QuanLyNhietDo extends Dbh{
             return $data;
         }
     }
+    
+    protected function random(){
+        $randomTemp = rand(22, 32);
+        $sql = "INSERT INTO nhiet_do (nhiet_do) VALUE ('$randomTemp')";
+        $this->connect()->query($sql);
+    }
 }
  
 ?>

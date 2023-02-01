@@ -16,11 +16,6 @@ include_once('./view/viewTemp.php');
 </head>
 
 <body>
-    <?php
-                $temps = new viewTemp();
-                $check = json_encode($temps->showAllTemp());
-                var_dump($check)
-                ?>
     <div>
         <canvas id="myChart"></canvas>
     </div>
@@ -37,12 +32,14 @@ include_once('./view/viewTemp.php');
         data: {
             labels: <?php
                 $temps = new viewTemp();
-                // $temps->showAllTemp();
-            json_encode($temps->showAllTemp());
+                echo json_encode($temps->showAllTimeTemp());
                 ?>,
             datasets: [{
-                label: "# of Votes",
-                data: [4, 8],
+                label: "Nhiet Do",
+                data: <?php
+                $temps = new viewTemp();
+                echo json_encode($temps->showAllTemp());
+                ?>,
                 borderWidth: 1,
             }, ],
         },
@@ -55,6 +52,15 @@ include_once('./view/viewTemp.php');
         },
     });
     </script>
+    <!-- <form action="" method="post">
+        <span name="randomNumb">
+            <?php 
+            $randomTemp = rand(22, 32);
+            echo $randomTemp;
+            ?>
+        </span>
+
+    </form> -->
     <table>
         <tr>
             <td>Thời gian</td>
@@ -64,13 +70,17 @@ include_once('./view/viewTemp.php');
             <td>
                 <?php
                 $temps = new viewTemp();
-                $temps->showAllTimeTemp(); 
+                foreach($temps->showAllTimeTemp() as $value){
+                    echo $value."<br>";
+                };
                 ?>
             </td>
             <td>
                 <?php
                 $temps = new viewTemp();
-                $temps->showAllTemp(); 
+                foreach($temps->showAllTemp() as $value){
+                    echo $value."<br>";
+                };                          
                 ?>
             </td>
         </tr>

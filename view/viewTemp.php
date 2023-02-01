@@ -4,16 +4,20 @@ class ViewTemp extends QuanLyNhietDo{
         $datas = $this->getAllTemp();
         foreach($datas as $data){;
             $nhiet_do[] = $data['nhiet_do'];
-            echo $data['nhiet_do']."<br>";
+            // echo $data['nhiet_do']."<br>";
         }
         return $nhiet_do;
     }
     public function showAllTimeTemp(){
         $datas = $this->getAllTimeTemp();
         foreach($datas as $data){;
-            echo $data['time']."<br>";
+            $time[] = $data['time'];
         }
+        return $time;
     }
+    // public function randomTemp(){
+    //     return $this->random();
+    // }
 }
 
 ?>
