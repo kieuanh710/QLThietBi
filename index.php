@@ -1,7 +1,7 @@
 <?php
 include_once('./database/database.php');
-include_once('./controller/temp.php');
-include_once('./view/viewTemp.php');
+include_once('./model/TempModel.php');
+include_once('./controller/TempController.php');
 ?>
 
 <!DOCTYPE html>
@@ -31,13 +31,13 @@ include_once('./view/viewTemp.php');
         type: "line",
         data: {
             labels: <?php
-                $temps = new viewTemp();
+                $temps = new TempController();
                 echo json_encode($temps->showAllTimeTemp());
                 ?>,
             datasets: [{
                 label: "Nhiet Do",
                 data: <?php
-                $temps = new viewTemp();
+                $temps = new TempController();
                 echo json_encode($temps->showAllTemp());
                 ?>,
                 borderWidth: 1,
@@ -52,15 +52,11 @@ include_once('./view/viewTemp.php');
         },
     });
     </script>
-    <!-- <form action="" method="post">
-        <span name="randomNumb">
-            <?php 
-            $randomTemp = rand(22, 32);
-            echo $randomTemp;
-            ?>
-        </span>
-
-    </form> -->
+    <?php
+    echo rand(22, 32);
+    date_default_timezone_set('Asia/Ho_Chi_Minh');
+    echo date('m/d/Y h:i:s a', time()); ; 
+    ?>
     <table>
         <tr>
             <td>Thời gian</td>
@@ -69,7 +65,7 @@ include_once('./view/viewTemp.php');
         <tr>
             <td>
                 <?php
-                $temps = new viewTemp();
+                $temps = new TempController();
                 foreach($temps->showAllTimeTemp() as $value){
                     echo $value."<br>";
                 };
@@ -77,10 +73,12 @@ include_once('./view/viewTemp.php');
             </td>
             <td>
                 <?php
-                $temps = new viewTemp();
+                $temps = new TempController();
                 foreach($temps->showAllTemp() as $value){
                     echo $value."<br>";
-                };                          
+                };
+                //run random
+                // $temps->randomTemp();                        
                 ?>
             </td>
         </tr>

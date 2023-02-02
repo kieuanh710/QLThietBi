@@ -1,10 +1,10 @@
 <?php
-class ViewTemp extends QuanLyNhietDo{
+
+class TempController extends TempModel{
     public function showAllTemp(){
         $datas = $this->getAllTemp();
         foreach($datas as $data){;
             $nhiet_do[] = $data['nhiet_do'];
-            // echo $data['nhiet_do']."<br>";
         }
         return $nhiet_do;
     }
@@ -15,9 +15,9 @@ class ViewTemp extends QuanLyNhietDo{
         }
         return $time;
     }
-    // public function randomTemp(){
-    //     return $this->random();
-    // }
+    public function randomTemp(){
+        return $this->random();
+    }
 }
 
 ?>

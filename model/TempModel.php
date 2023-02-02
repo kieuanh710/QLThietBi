@@ -1,5 +1,5 @@
 <?php
-class QuanLyNhietDo extends Dbh{
+class TempModel extends Dbh{
     protected function getAllTemp(){
         $sql = "SELECT nhiet_do FROM nhiet_do;";
         $result = $this->connect()->query($sql);
@@ -22,12 +22,14 @@ class QuanLyNhietDo extends Dbh{
             return $data;
         }
     }
-    
     protected function random(){
-        $randomTemp = rand(22, 32);
-        $sql = "INSERT INTO nhiet_do (nhiet_do) VALUE ('$randomTemp')";
+        $randomTemp = (rand(22, 32));
+        date_default_timezone_set('Asia/Ho_Chi_Minh');
+        $date = date('m/d/Y h:i:s a', time());  
+        $sql = "INSERT INTO nhiet_do (nhiet_do, time) VALUE ('$randomTemp', '$date')";
         $this->connect()->query($sql);
     }
+   
 }
  
 ?>
